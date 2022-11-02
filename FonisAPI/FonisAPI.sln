@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FonisAPI", "FonisAPI\FonisAPI.csproj", "{AEA932A3-8B4D-497D-B829-93140084C6E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{8FE586CF-7C4B-4C32-92AC-46FF8B5F8772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{09604973-1AFC-4438-93D5-12895C6930CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AEA932A3-8B4D-497D-B829-93140084C6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEA932A3-8B4D-497D-B829-93140084C6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEA932A3-8B4D-497D-B829-93140084C6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE586CF-7C4B-4C32-92AC-46FF8B5F8772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE586CF-7C4B-4C32-92AC-46FF8B5F8772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE586CF-7C4B-4C32-92AC-46FF8B5F8772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE586CF-7C4B-4C32-92AC-46FF8B5F8772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09604973-1AFC-4438-93D5-12895C6930CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09604973-1AFC-4438-93D5-12895C6930CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09604973-1AFC-4438-93D5-12895C6930CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09604973-1AFC-4438-93D5-12895C6930CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

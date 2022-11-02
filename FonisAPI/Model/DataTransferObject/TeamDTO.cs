@@ -10,7 +10,6 @@ namespace Model.DataTransferObject
     {
         public int TeamId { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
-        public UserDTO User { get; set; }
+  
     }
 }

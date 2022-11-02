@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +10,28 @@ namespace DataAccessLayer.UnitiOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-       // private readonly FonisContext context;
+        private readonly FonisContext context;
 
-        public UnitOfWork(/*FonisContext context*/)
+        public UnitOfWork(FonisContext context)
         {
            
         }
    
-        public IRepositoryGroup GroupRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IRepositoryArchivedTask ArchivedTaskRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IRepositoryTeam TeamRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IRepositoryTask TaskRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IRepositoryUser UserRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IRepositoryPosition PositionRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IRepositoryGroup GroupRepository { get ; set; }
+        public IRepositoryArchivedTask ArchivedTaskRepository { get; set; }
+        public IRepositoryTeam TeamRepository { get; set; }
+        public IRepositoryTask TaskRepository { get ; set ; }
+        public IRepositoryUser UserRepository { get ; set ; }
+        public IRepositoryPosition PositionRepository { get ; set ; }
 
         public void Commit()
         {
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         public void Dispose()
         {
-            //context.Dispose();
+            context.Dispose();
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Model.Domain
         public string Name { get; set; }
         public string Project { get; set; }
         public string Description { get; set; }
+        public List<ArchivedTask> ArchivedTasks { get; set; }
     }
 }
