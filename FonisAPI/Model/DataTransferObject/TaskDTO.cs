@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.DataTransferObject
 {
-    internal class TaskDTO
+    public class TaskDTO
     {
         public int TaskId { get; set; }
         public string Name { get; set; }

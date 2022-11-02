@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.UnitiOfWork
 {
-    internal interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork: IDisposable
     {
         public IRepositoryGroup GroupRepository { get; set; }
         public IRepositoryArchivedTask ArchivedTaskRepository { get; set; }

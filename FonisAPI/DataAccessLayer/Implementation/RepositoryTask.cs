@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,14 @@ namespace DataAccessLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<List<Model.Domain.Task>> GetAll()
+        public async Task<List<Model.Domain.Task>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await context.Tasks.ToListAsync();
+            foreach (var task in result)
+            {
+                task.Team = context.Teams.Find(task.TaskId);
+            }
+            return result;
         }
 
         public void Update(Model.Domain.Task enthity)

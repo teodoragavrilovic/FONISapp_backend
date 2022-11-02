@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "HrWZDrNTbMcqzCtT//w9nT2uebxSxueYEdGV2pqxjMdJc6lnqzjP8GGKUF6OzO5gFsRzYym2l42cxJ914cxS/Q==",
+  "dgSpecHash": "CAsV/KV6C4MZXBvAEDVtBz9RxNAfgPHSnUN38X5pvshTz04bCeDDhZeDUKjhHAv6XR6LQxoh2pQI12jHBBQxvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Teodora\\Documents\\GitHub\\FONISapp_backend\\FonisAPI\\DataAccessLayer\\DataAccessLayer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Teodora\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Teodora\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.10\\microsoft.entityframeworkcore.6.0.10.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Interfaces;
+﻿using DataAccessLayer.Implementation;
+using DataAccessLayer.Interfaces;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,13 @@ namespace DataAccessLayer.UnitiOfWork
 
         public UnitOfWork(FonisContext context)
         {
-           
+            this.context = context;
+            GroupRepository = new RepositoryGroup(context);
+            ArchivedTaskRepository = new RepositoryArchivedTask(context);
+            TeamRepository = new RepositoryTeam(context);
+            TaskRepository = new RepositoryTask(context);
+            PositionRepository = new RepositoryPosition(context);
+            UserRepository = new RepositoryUser(context);   
         }
    
         public IRepositoryGroup GroupRepository { get ; set; }
