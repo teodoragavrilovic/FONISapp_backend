@@ -11,7 +11,7 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(FonisContext))]
-    [Migration("20221103005108_Init")]
+    [Migration("20221103124138_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,7 +124,10 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.Domain.User", b =>
                 {
                     b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<bool>("Admin")
                         .HasColumnType("bit");
@@ -148,6 +151,8 @@ namespace Model.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("PositionId");
 
                     b.ToTable("Users");
                 });
@@ -207,7 +212,7 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.Domain.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

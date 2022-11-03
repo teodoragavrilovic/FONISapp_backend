@@ -20,7 +20,15 @@ namespace DataAccessLayer.Implementation
         }
         public void Add(User enthity)
         {
-            throw new NotImplementedException();
+            enthity.Position = context.Positions.Find(enthity.Position.PositionId);
+            try
+            {
+                context.Add(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Delete(User enthity)

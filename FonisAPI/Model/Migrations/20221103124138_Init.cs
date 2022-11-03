@@ -76,7 +76,8 @@ namespace Model.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Admin = table.Column<bool>(type: "bit", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -88,8 +89,8 @@ namespace Model.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Users_Positions_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Users_Positions_PositionId",
+                        column: x => x.PositionId,
                         principalTable: "Positions",
                         principalColumn: "PositionId");
                 });
@@ -122,6 +123,11 @@ namespace Model.Migrations
                 name: "IX_Tasks_TeamId",
                 table: "Tasks",
                 column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PositionId",
+                table: "Users",
+                column: "PositionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -85,27 +85,33 @@ namespace FonisAPI.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public void PostUser(UserDTO userDTO)
         {
-            _context.Users.Add(user);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (UserExists(user.UserId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            var user = mapper.Map<User>(userDTO);
+            unitOfWork.UserRepository.Add(user);
+            unitOfWork.Commit();
         }
+        /* public async Task<ActionResult<User>> PostUser(User user)
+         {
+             _context.Users.Add(user);
+             try
+             {
+                 await _context.SaveChangesAsync();
+             }
+             catch (DbUpdateException)
+             {
+                 if (UserExists(user.UserId))
+                 {
+                     return Conflict();
+                 }
+                 else
+                 {
+                     throw;
+                 }
+             }
+
+             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+         }*/
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
