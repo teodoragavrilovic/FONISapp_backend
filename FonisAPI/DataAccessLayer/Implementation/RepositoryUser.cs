@@ -53,7 +53,15 @@ namespace DataAccessLayer.Implementation
 
         public void Update(User enthity)
         {
-            throw new NotImplementedException();
+            enthity.Position = context.Positions.Find(enthity.Position.PositionId);
+            try
+            {
+                context.Update(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
