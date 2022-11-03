@@ -82,53 +82,17 @@ namespace FonisAPI.Controllers
              return NoContent();
          }*/
         [HttpPut]
-        public void Put([FromBody] TaskDTO task)
+        public void Put([FromBody] TaskDTO taskDTO)
         {
-            Model.Domain.Task t = new Model.Domain.Task
-            {
-                TaskId = task.TaskId,
-                Name = task.Name,
-                Description = task.Description,
-                ResponsiblePerson = task.Description,
-                Team = new Team
-                {
-                    Name = task.Team.Name,
-                    TeamId = task.Team.TeamId,
-                },
-                BacklogPosition = task.BacklogPosition,
-                BoardPosition = task.BoardPosition,
-                Deleted = task.Deleted
-            };
-
-            unitOfWork.TaskRepository.Update(t);
+            var task = mapper.Map<Model.Domain.Task>(taskDTO);
+            unitOfWork.TaskRepository.Update(task);
             unitOfWork.Commit();
         }
 
         // POST: api/Tasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //public void Post([FromBody] TaskDTO task)
-        //{
-        //    Model.Domain.Task t = new Model.Domain.Task
-        //    {
-        //        TaskId = task.TaskId,
-        //        Name = task.Name,
-        //        Description = task.Description,
-        //        ResponsiblePerson = task.Description,
-        //        TeamId = task.Team.TeamId,
-        //        Team = new Team
-        //        {
-        //            Name = task.Team.Name,
-        //            TeamId = task.Team.TeamId,
-        //        },
-        //        BacklogPosition = task.BacklogPosition,
-        //        BoardPosition = task.BoardPosition,
-        //        Deleted = task.Deleted
-        //    };
-
-        //    unitOfWork.TaskRepository.Add(t);
-        //    unitOfWork.Commit();
-        //}
+      
          public void PostTask(TaskDTO taskDTO)
          {
             var task = mapper.Map<Model.Domain.Task>(taskDTO);

@@ -53,7 +53,15 @@ namespace DataAccessLayer.Implementation
 
         public void Update(Model.Domain.Task enthity)
         {
-            throw new NotImplementedException();
+            enthity.Team = context.Teams.Find(enthity.Team.TeamId);
+            try
+            {
+                context.Update(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
