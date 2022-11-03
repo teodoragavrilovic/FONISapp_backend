@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using Model.DataTransferObject;
 using Model.Domain;
 
 namespace FonisAPI.Controllers
@@ -20,16 +21,20 @@ namespace FonisAPI.Controllers
         private readonly IUnitOfWork unitOfWork;
         private IMapper mapper;
 
-        public GroupsController(FonisContext context)
+        public GroupsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _context = context;
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         // GET: api/Groups
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Group>>> GetGroups()
+        public async Task<ActionResult<List<GroupDTO>>> GetGroups()
         {
-            return await _context.Groups.ToListAsync();
+            var Groups = await unitOfWork.GroupRepository.GetAll();
+            var groupDTOs = mapper.Map<List<GroupDTO>>(Groups);
+
+            return Ok(groupDTOs);
         }
 
         // GET: api/Groups/5

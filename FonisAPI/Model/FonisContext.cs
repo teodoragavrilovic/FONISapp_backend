@@ -20,14 +20,14 @@ namespace Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FonisProjects;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Fonis;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Task>().HasOne(e => e.Team).WithMany().HasForeignKey(e => e.TaskId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Task>().HasOne(e => e.Team).WithMany().HasForeignKey(e => e.TeamId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<User>().HasOne(e => e.Position).WithMany().HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Group>().OwnsMany(o => o.ArchivedTasks);
         }

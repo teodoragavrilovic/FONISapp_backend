@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Domain;
 using System;
@@ -16,6 +17,7 @@ namespace DataAccessLayer.Implementation
         public RepositoryPosition(FonisContext context)
         {
 
+            this.context = context;
         }
         public void Add(Position enthity)
         {
@@ -32,9 +34,10 @@ namespace DataAccessLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<List<Position>> GetAll()
+        public async Task<List<Position>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await context.Positions.ToListAsync();
+            return result;
         }
 
         public void Update(Position enthity)

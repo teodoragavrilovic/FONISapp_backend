@@ -15,5 +15,6 @@ namespace DataAccessLayer.UnitiOfWork
         public IRepositoryTask TaskRepository { get; set; }
         public IRepositoryUser UserRepository { get; set; }
         public IRepositoryPosition PositionRepository { get; set; }
+        void Commit();
     }
 }

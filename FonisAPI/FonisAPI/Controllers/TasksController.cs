@@ -53,59 +53,88 @@ namespace FonisAPI.Controllers
 
         // PUT: api/Tasks/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask(int id, Model.Domain.Task task)
+        /* [HttpPut("{id}")]
+         public async Task<IActionResult> PutTask(int id, Model.Domain.Task task)
+         {
+             if (id != task.TaskId)
+             {
+                 return BadRequest();
+             }
+
+             _context.Entry(task).State = EntityState.Modified;
+
+             try
+             {
+                 await _context.SaveChangesAsync();
+             }
+             catch (DbUpdateConcurrencyException)
+             {
+                 if (!TaskExists(id))
+                 {
+                     return NotFound();
+                 }
+                 else
+                 {
+                     throw;
+                 }
+             }
+
+             return NoContent();
+         }*/
+        [HttpPut]
+        public void Put([FromBody] TaskDTO task)
         {
-            if (id != task.TaskId)
+            Model.Domain.Task t = new Model.Domain.Task
             {
-                return BadRequest();
-            }
-
-            _context.Entry(task).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TaskExists(id))
+                TaskId = task.TaskId,
+                Name = task.Name,
+                Description = task.Description,
+                ResponsiblePerson = task.Description,
+                Team = new Team
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                    Name = task.Team.Name,
+                    TeamId = task.Team.TeamId,
+                },
+                BacklogPosition = task.BacklogPosition,
+                BoardPosition = task.BoardPosition,
+                Deleted = task.Deleted
+            };
 
-            return NoContent();
+            unitOfWork.TaskRepository.Update(t);
+            unitOfWork.Commit();
         }
 
         // POST: api/Tasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Model.Domain.Task>> PostTask(Model.Domain.Task task)
-        {
-            _context.Tasks.Add(task);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TaskExists(task.TaskId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //public void Post([FromBody] TaskDTO task)
+        //{
+        //    Model.Domain.Task t = new Model.Domain.Task
+        //    {
+        //        TaskId = task.TaskId,
+        //        Name = task.Name,
+        //        Description = task.Description,
+        //        ResponsiblePerson = task.Description,
+        //        TeamId = task.Team.TeamId,
+        //        Team = new Team
+        //        {
+        //            Name = task.Team.Name,
+        //            TeamId = task.Team.TeamId,
+        //        },
+        //        BacklogPosition = task.BacklogPosition,
+        //        BoardPosition = task.BoardPosition,
+        //        Deleted = task.Deleted
+        //    };
 
-            return CreatedAtAction("GetTask", new { id = task.TaskId }, task);
-        }
+        //    unitOfWork.TaskRepository.Add(t);
+        //    unitOfWork.Commit();
+        //}
+         public void PostTask(TaskDTO taskDTO)
+         {
+            var task = mapper.Map<Model.Domain.Task>(taskDTO);
+            unitOfWork.TaskRepository.Add(task);
+            unitOfWork.Commit();
+         }
 
         // DELETE: api/Tasks/5
         [HttpDelete("{id}")]

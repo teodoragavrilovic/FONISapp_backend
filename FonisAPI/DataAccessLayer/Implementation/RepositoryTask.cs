@@ -16,10 +16,19 @@ namespace DataAccessLayer.Implementation
         public RepositoryTask(FonisContext context)
         {
 
+            this.context = context;
         }
         public void Add(Model.Domain.Task enthity)
         {
-            throw new NotImplementedException();
+            enthity.Team = context.Teams.Find(enthity.Team.TeamId);
+            try
+            {
+                context.Add(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Delete(Model.Domain.Task enthity)

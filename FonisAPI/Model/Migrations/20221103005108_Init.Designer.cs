@@ -11,7 +11,7 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(FonisContext))]
-    [Migration("20221102164831_Init")]
+    [Migration("20221103005108_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,10 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.Domain.Task", b =>
                 {
                     b.Property<int>("TaskId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"), 1L, 1);
 
                     b.Property<int>("BacklogPosition")
                         .HasColumnType("int");
@@ -95,6 +98,8 @@ namespace Model.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("TaskId");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Tasks");
                 });
@@ -191,7 +196,7 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.Domain.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TaskId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

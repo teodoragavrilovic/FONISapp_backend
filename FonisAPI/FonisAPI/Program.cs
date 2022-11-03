@@ -18,6 +18,7 @@ var mappingConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new FonisMapper());
 });
 IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

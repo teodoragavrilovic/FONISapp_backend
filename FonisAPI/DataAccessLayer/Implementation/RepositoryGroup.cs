@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Domain;
 using System;
@@ -15,7 +16,7 @@ namespace DataAccessLayer.Implementation
 
         public RepositoryGroup(FonisContext context)
         {
-
+            this.context = context;
         }
         public void Add(Group enthity)
         {
@@ -32,9 +33,11 @@ namespace DataAccessLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<List<Group>> GetAll()
+        public async Task<List<Group>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await context.Groups.Include(e => e.ArchivedTasks).ToListAsync();
+        
+            return result;
         }
 
         public void Update(Group enthity)

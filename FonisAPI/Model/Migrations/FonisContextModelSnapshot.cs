@@ -66,7 +66,10 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.Domain.Task", b =>
                 {
                     b.Property<int>("TaskId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"), 1L, 1);
 
                     b.Property<int>("BacklogPosition")
                         .HasColumnType("int");
@@ -93,6 +96,8 @@ namespace Model.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("TaskId");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Tasks");
                 });
@@ -189,7 +194,7 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.Domain.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TaskId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
