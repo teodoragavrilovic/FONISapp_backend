@@ -20,7 +20,18 @@ namespace DataAccessLayer.Implementation
         }
         public void Add(Group enthity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //foreach(ArchivedTask arcTask in context.ArchivedTasks)
+                //{
+                //    context.Add(arcTask);
+                //}
+                context.Add(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Delete(Group enthity)

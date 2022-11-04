@@ -85,12 +85,11 @@ namespace FonisAPI.Controllers
         // POST: api/Groups
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Group>> PostGroup(Group @group)
+        public void PostGroup(GroupDTO groupDTO)
         {
-            _context.Groups.Add(@group);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetGroup", new { id = @group.GroupId }, @group);
+            var group = mapper.Map<Group>(groupDTO);
+            unitOfWork.GroupRepository.Add(group);
+            unitOfWork.Commit();
         }
 
         // DELETE: api/Groups/5

@@ -16,6 +16,7 @@ namespace Model
         {
             CreateMap<Team, TeamDTO>().ReverseMap();
             CreateMap<Position, PositionDTO>().ReverseMap();
+            CreateMap<ArchivedTask, ArchivedTaskDTO>().ReverseMap();
             CreateMap<Task, TaskDTO>().ForMember(dest => dest.Team, opt => opt.MapFrom(MapTaskTeam)).ReverseMap();
             CreateMap<User, UserDTO>().ForMember(dest => dest.Position, opt => opt.MapFrom(MapUserPosition)).ReverseMap();
             CreateMap<Group, GroupDTO>().ForMember(dest => dest.ArchivedTasks, opt => opt.MapFrom(MapGroupArchivedTasks)).ReverseMap();
